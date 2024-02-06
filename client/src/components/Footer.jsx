@@ -1,7 +1,9 @@
 const Footer = () => {
+  const today = new Date();
+  const year = today.getFullYear();
   return (
-    <footer>
-      <h3>Copyright MrFritz's Dad Jokes 2024 </h3>
+    <footer className="flex justify-center h-10 bg-slate-50">
+      <h3>Copyright MrFritz's Dad Jokes {year} </h3>
     </footer>
   );
 };

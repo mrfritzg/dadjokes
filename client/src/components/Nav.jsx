@@ -8,10 +8,13 @@ const Nav = () => {
   //   { path: "/about", name: "About" },
   // ];
   return (
-    <nav>
-      <ul className="navUl">
+    <nav className="flex justify-center text-center mb-10">
+      <ul className="flex gap-5 text-center">
         {links.map((link) => (
-          <li key={link.name}>
+          <li
+            className="bg-blue-950 text-white px-4 py-2 rounded-md hover:bg-red-300"
+            key={link.name}
+          >
             <NavLink to={link.path}>{link.name}</NavLink>
           </li>
         ))}
