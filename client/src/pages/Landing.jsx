@@ -20,20 +20,25 @@ const Landing = () => {
     <main>
       <section className="landing section1">
         <div>
-          <h1>Welcome to the DadJokes page</h1>
-          <h3>brought to you by MrFritz</h3>
+          <h1 className="text-red-700 mb-3">Welcome to DadJokes</h1>
+          <h3>
+            brought to you by{" "}
+            <span className="text-red-700 font-bold">MrFritz</span>{" "}
+          </h3>
           <h4>
             You can generate random jokes by clicking on the button below or
             refreshing the page
           </h4>
         </div>
       </section>
-      <section className="randomResults">
-        <h2>Joke: </h2>
-        <button className="randomSearchButton" onClick={getRandomJoke}>
+      <section className=" text-center mt-10">
+        <button
+          className="bg-blue-950 text-white px-4 py-2 rounded-md mb-4 hover:bg-blue-700"
+          onClick={getRandomJoke}
+        >
           Random Joke
         </button>
-        <div className="randomJoke">
+        <div className="bg-white m-auto h-40 justify-center items-center flex shadow-lg">
           <h4> {randomJoke.joke}</h4>
         </div>
       </section>
