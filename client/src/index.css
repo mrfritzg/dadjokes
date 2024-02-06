@@ -1,0 +1,150 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #213547;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  /* display: flex; */
+  /* place-items: center; */
+  min-width: 320px;
+  min-height: 100vh;
+  background: #f7f7f7;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+}
+
+.navUl {
+  display: flex;
+  list-style-type: none;
+  padding: 0px;
+  background-color: #213547; /* #a6a6a6; */
+}
+
+.navUl li {
+  padding: 20px;
+  border: 1px solid black;
+  /* color: #213547;
+  background-color: #cccccc; */
+  cursor: pointer;
+}
+
+.navUl li:hover {
+  background-color: #cccccc;
+  color: #213547;
+  font-weight: 800;
+}
+
+.navUl a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.navUl a:hover {
+  color: #213547;
+}
+
+main {
+  max-width: 1200px;
+  padding: 10px;
+  margin: 10px auto;
+  /* background: #fff; */
+}
+
+.section1 {
+  text-align: center;
+  /* background: #f7f7f7; */
+}
+
+.searchResults {
+  /* text-align: center; */
+  background: #fff;
+  margin: 10px auto;
+  padding: 0 20px 10px 20px;
+}
+
+.jokeItem {
+  /* margin-bottom: 15px; */
+  border-bottom: #213547 1px solid;
+  line-height: 1.5em;
+  letter-spacing: 2px;
+  font-weight: 600;
+  font-size: 1.5em;
+  padding-bottom: 5px;
+}
+
+.jokeItem:hover {
+  background-color: #cccccc;
+  cursor: pointer;
+}
+
+footer {
+  max-height: 200px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+  padding: 30px;
+}
+
+.randomResults {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.randomResults h2 {
+  justify-self: start;
+}
+
+.randomResults button {
+  justify-self: end;
+  background-color: #213547;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10%;
+}
+
+.randomJoke {
+  grid-column: span 2;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #cccccc;
+  line-height: 1.5em;
+  letter-spacing: 2px;
+  font-weight: 600;
+  font-size: 1.5em;
+  height: 200px;
+  margin-top: 10px;
+}
+
+.about {
+  height: 570px;
+}
