@@ -17,29 +17,27 @@ const Landing = () => {
   }, []);
 
   return (
-    <main>
-      <section className="landing section1">
-        <div>
-          <h1 className="text-red-700 mb-3">Welcome to DadJokes</h1>
-          <h3>
-            brought to you by{" "}
-            <span className="text-red-700 font-bold">MrFritz</span>{" "}
-          </h3>
-          <h4>
-            You can generate random jokes by clicking on the button below or
-            refreshing the page
-          </h4>
-        </div>
+    <main className="bg-white p-5 md:w-2/3 mx-auto">
+      <section className="border-b-4 border-blue-950 pb-2">
+        <h1 className="font-bold text-center">Welcome to DadJokes</h1>
+        <h3 className="text-end">
+          brought to you by{" "}
+          <span className="text-red-700 font-bold">MrFritz</span>{" "}
+        </h3>
+        <h4>
+          You can generate random jokes by clicking on the button below or
+          refreshing the page
+        </h4>
       </section>
-      <section className=" text-center mt-10">
+      <section className=" text-center my-10">
         <button
           className="bg-blue-950 text-white px-4 py-2 rounded-md mb-4 hover:bg-blue-700"
           onClick={getRandomJoke}
         >
           Random Joke
         </button>
-        <div className="bg-white m-auto h-40 justify-center items-center flex shadow-lg">
-          <h4> {randomJoke.joke}</h4>
+        <div className="bg-gray-100 m-auto h-40 justify-center items-center flex shadow-lg border-2 border-blue-950">
+          <h4 className="p-4 font-bold"> {randomJoke.joke}</h4>
         </div>
       </section>
     </main>
