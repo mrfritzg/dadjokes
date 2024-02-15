@@ -21,8 +21,8 @@ const Search = () => {
   }, [search]);
 
   return (
-    <main className="bg-white p-5 md:w-2/3 mx-auto">
-      <section className="section1">
+    <main className=" p-5 md:w-2/3 mx-auto">
+      <section className="mb-2">
         <h1>SEARCH JOKES</h1>
         <input
           type="text"
@@ -31,7 +31,7 @@ const Search = () => {
         />
       </section>
 
-      <section className="">
+      <section className="bg-white p-2">
         {jokes ? (
           jokes.map((item) => (
             <div className="jokeItem" key={item.id}>
