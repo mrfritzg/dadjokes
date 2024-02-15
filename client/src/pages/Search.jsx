@@ -22,12 +22,13 @@ const Search = () => {
 
   return (
     <main className=" p-5 md:w-2/3 mx-auto">
-      <section className="mb-2">
-        <h1>SEARCH JOKES</h1>
+      <section className="mb-2 text-center">
+        <h1 className="font-bold">SEARCH JOKES</h1>
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          className="border-2 border-black w-1/2 h-8 p-2"
         />
       </section>
 
