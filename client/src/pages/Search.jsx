@@ -28,7 +28,7 @@ const Search = () => {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border-2 border-black w-1/2 h-8 p-2"
+          className="border-2 border-black w-1/2 h-8 p-2 rounded-xl"
         />
       </section>
 
