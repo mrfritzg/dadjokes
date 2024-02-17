@@ -36,7 +36,8 @@ const Landing = () => {
         >
           Random Joke
         </button>
-        <div className="bg-gray-100 m-auto h-40 justify-center items-center flex shadow-lg border-2 border-blue-950">
+        <div className=" m-auto h-40 justify-center items-center flex shadow-2xl ">
+          {/* bg-gray-100 border-2 border-blue-950 */}
           <h4 className="p-4 font-bold"> {randomJoke.joke}</h4>
         </div>
       </section>
