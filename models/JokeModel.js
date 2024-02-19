@@ -9,6 +9,11 @@ const JokeSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
     },
+    userFavorite: {
+      type: String,
+      enum: ["admin"],
+      default: "admin",
+    },
   },
   { timestamps: true }
 );
