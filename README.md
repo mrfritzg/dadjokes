@@ -23,7 +23,11 @@
 
 ### Please share this link with a DAD near you
 
+![pic2](https://github.com/mrfritzg/dadjokes/assets/25967991/ba5a480f-fb0e-482e-8601-f78a1945cc42)
 
+
+
+![pic1](https://github.com/mrfritzg/dadjokes/assets/25967991/6dc457b1-b848-4811-aabc-6de3eb5c1b3e)
 
 
 
