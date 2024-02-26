@@ -7,11 +7,6 @@ const Nav = () => {
     document.getElementById("menu").classList.toggle("hidden");
   };
 
-  // const links = [
-  //   { path: "/", name: "Home" },
-  //   { path: "/dadjokes", name: "Dad-Jokes" },
-  //   { path: "/about", name: "About" },
-  // ];
   return (
     <nav className="w-full md:w-2/3 bg-white dark:bg-black dark:text-white flex flex-col md:flex-row items-center md:justify-between px-6 py-4 border-b border-b-gray-60 shadow-sm max-w-screen-2xl mx-auto mb-5">
       {/* -- Logo -- */}

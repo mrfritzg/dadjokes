@@ -24,9 +24,12 @@ const Landing = () => {
   return (
     <main className="bg-white p-5 md:w-2/3 mx-auto">
       <section className="border-b-4 border-blue-950 pb-2">
-        <h1 className="font-bold text-center">Welcome to DadJokes</h1>
-        <h3 className="text-end">
-          brought to you by{" "}
+        <h1 className="font-bold text-center text-xl">
+          Welcome to DAD
+          <span className="text-blue-600 transform uppercase">Jokes</span>
+        </h1>
+        <h3 className="">
+          Brought to you by{" "}
           <span className="text-red-700 font-bold">MrFritz</span>{" "}
         </h3>
         <h4>
@@ -35,7 +38,7 @@ const Landing = () => {
         </h4>
         <p>
           <img src={warning} alt="warning" className="inline-block px-2" />
-          <span className="text-red-900 underline">WARNING: </span>Please seek
+          <span className="text-red-900 underline">WARNING:</span> Please seek
           medical attention if your eyes don't unroll after 5 minutes{" "}
           <img src={warning} alt="warning" className="inline-block px-2" />
         </p>
@@ -50,7 +53,7 @@ const Landing = () => {
         <div className=" m-auto h-40 justify-center items-center flex shadow-2xl">
           <h4 className="p-4 font-bold"> {randomJoke.joke}</h4>
         </div>
-        <div className="text-left my-2">
+        <div className="text-left my-8">
           <h1 className="">COMING SOON...</h1>
           <ul>
             <li>
