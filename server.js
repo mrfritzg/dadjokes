@@ -24,6 +24,7 @@ import mongoSanitize from "express-mongo-sanitize";
 // setup env variables on morgan middleware
 if (process.env.NODE_ENV === "development") {
   //setup middleware to use the morgan package with the 'use' method
+  // morgan is a http request logger middleware for node.js
   app.use(morgan("dev"));
 }
 
@@ -40,6 +41,33 @@ app.use(express.json());
 
 // implement the cookieparser as middleware in order to read the cookies that hold the JWT
 app.use(cookieParser());
+
+import { nanoid } from "nanoid";
+
+let jokes = [
+  { id: nanoid(), body: "joke1", like: 1, dislike: 20 },
+  { id: nanoid(), body: "joke2", like: 100, dislike: 40 },
+];
+
+// get all jokes
+app.get("/api/v1/jokes", (req, res) => {
+  res.status(200).json({ jokes });
+});
+
+// create job
+app.post("/api/v1/jokes", (req, res) => {
+  const { body, like, dislike } = req.body;
+  if (!body || !like || !dislike) {
+    return res
+      .status(400)
+      .json({ msg: "pls provide joke and like and dislike" });
+  }
+
+  const id = nanoid(10);
+  const joke = { id, body, like, dislike };
+  jokes.push(joke);
+  res.status(200).json({ joke });
+});
 
 //middleware for routers
 //jobRouter, add authenticateUser for all job routes, to protect all job routes
