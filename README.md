@@ -30,7 +30,10 @@
 
 ![pic2](https://github.com/mrfritzg/dadjokes/assets/25967991/ba5a480f-fb0e-482e-8601-f78a1945cc42)
 
-![pic1](https://github.com/mrfritzg/dadjokes/assets/25967991/6dc457b1-b848-4811-aabc-6de3eb5c1b3e)
+![pic1](https://github.com/mrfritzg/dadjokes/assets/25967991/d888e21b-4f0a-4535-9efd-aeca85332b34)
+
+![pic3](https://github.com/mrfritzg/dadjokes/assets/25967991/4ef3915b-c6d9-4fd9-af80-ff1dd11dbdda)
+
 
 **Technical Details:**
 
