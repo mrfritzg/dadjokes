@@ -4,9 +4,9 @@
 
 [Mrfritz's DadJokes](https://vite-mrfritz-dadjokes.onrender.com)
 
-- This app is for every Dad that loves telling jokes no matter how bad they are or no matter how many eye rolls they get.
+- This app is for every Dad who loves telling jokes no matter how bad they are or no matter how many eyes roll.
 
-- Have you ever run out of Dad Jokes at critical times?
+- Have you ever run out of Dad Jokes at important times?
 
 - **Well have no fear** We're here to help you with a steady supply of funny, corny and eye rolling jokes.
 
