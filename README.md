@@ -12,6 +12,14 @@
 
 - Keep your family and friends in constant "laughter" with these family friendly jokes
 
+### Please share this [link](https://vite-mrfritz-dadjokes.onrender.com) with a DAD near you
+
+![pic2](https://github.com/mrfritzg/dadjokes/assets/25967991/ba5a480f-fb0e-482e-8601-f78a1945cc42)
+
+![pic1](https://github.com/mrfritzg/dadjokes/assets/25967991/d888e21b-4f0a-4535-9efd-aeca85332b34)
+
+![pic3](https://github.com/mrfritzg/dadjokes/assets/25967991/4ef3915b-c6d9-4fd9-af80-ff1dd11dbdda)
+
 ## **COMING SOON!**
 
 ### ADD YOUR OWN JOKES
@@ -25,15 +33,6 @@
 ### ADD JOKES TO FAVORITES
 
 - Make a list of your favorite jokes
-
-### Please share this link with a DAD near you
-
-![pic2](https://github.com/mrfritzg/dadjokes/assets/25967991/ba5a480f-fb0e-482e-8601-f78a1945cc42)
-
-![pic1](https://github.com/mrfritzg/dadjokes/assets/25967991/d888e21b-4f0a-4535-9efd-aeca85332b34)
-
-![pic3](https://github.com/mrfritzg/dadjokes/assets/25967991/4ef3915b-c6d9-4fd9-af80-ff1dd11dbdda)
-
 
 **Technical Details:**
 
