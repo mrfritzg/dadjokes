@@ -38,5 +38,5 @@
 
 - This is a Full Stack MERN app with React Router 6.4+, Vite, Node.js,
   React Query, Mongoose 7+, MongoDB, Cloudinary, Axios.
-- An initial set of Jokes are being provided from the [icanhazdadjoke.com API](https://icanhazdadjoke.com/)
+- The Majority of the Jokes have been provided by the [icanhazdadjoke.com API](https://icanhazdadjoke.com/)
 - icanhazdadjoke.com is the largest selection of dad jokes on the internet. Now supporting many different integrations to ensure you can access the dad jokes that you need wherever you are.
