@@ -16,9 +16,8 @@ const JokeSchema = new mongoose.Schema(
       ref: "User",
     },
     userFavorite: {
-      type: String,
-      enum: ["admin"],
-      default: "admin",
+      type: [String],
+      default: ["admin"],
     },
   },
   { timestamps: true }

@@ -1,25 +1,19 @@
 import mongoose from "mongoose";
 import day from "dayjs";
-import { nanoid } from "nanoid";
-
-let jokes = [
-  { id: nanoid(), body: "joke1", like: 1, dislike: 20 },
-  { id: nanoid(), body: "joke2", like: 100, dislike: 40 },
-];
 
 //Joke Data from Model from MongoDB
 import Joke from "../models/JokeModel.js";
 
 // Status Codes for CRUD & route responses
-// import { StatusCodes } from "http-status-codes";
+import { StatusCodes } from "http-status-codes";
 
 // custom Error Class
-// import { NotFoundError } from "../errors/customErrors.js";
+import { NotFoundError } from "../errors/customErrors.js";
 
 //Get All Jokes controller
 export const getAllJokes = async (req, res) => {
-  const jokes = await Job.find({});
-  res.status(200).json({ jokes });
+  const jokes = await Joke.find({});
+  res.status(StatusCodes.OK).json({ jokes });
 
   // destructure the parameters from the search
   // const { search, jokeLike, jokeDislike, sort } = req.query;
@@ -88,7 +82,7 @@ export const getAllJokes = async (req, res) => {
 //POST Create joke Controller
 export const createJoke = async (req, res) => {
   const joke = await Joke.create(req.body);
-  res.status(201).json({ joke });
+  res.status(StatusCodes.CREATED).json({ joke });
 
   // assign the userId from the JWT to the createdBy in
   // the request as you're creating the job
@@ -100,58 +94,35 @@ export const createJoke = async (req, res) => {
 
 // Get-- a Single Joke Controller
 export const getJoke = async (req, res) => {
-  const { id } = req.params;
-  const joke = jokes.find((joke) => joke.id === id);
-  if (!joke) {
-    return res.status(404).json({ msg: `no joke with id ${id}` });
-  }
-  res.status(200).json({ joke });
+  const joke = await Joke.findById(req.params.id);
 
-  // const joke = await Joke.findById(req.params.id);
-  // res.status(StatusCodes.OK).json({ joke });
+  if (!joke) throw new NotFoundError(`no joke with id ${req.params.id}`);
+  res.status(StatusCodes.OK).json({ joke });
 };
 
 // Patch -- Update Joke controller
 export const updateJoke = async (req, res) => {
-  const { body, like, dislike } = req.body;
-  if (!body || !like || !dislike) {
-    return res
-      .status(400)
-      .json({ msg: "pls provide joke and like and dislike" });
-  }
+  const updatedJoke = await Joke.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
 
-  const { id } = req.params;
-  const joke = jokes.find((joke) => joke.id === id);
-  if (!joke) {
-    return res.status(404).json({ msg: `no joke with id ${id}` });
-  }
+  if (!updatedJoke) throw new NotFoundError(`no joke with id ${req.params.id}`);
 
-  joke.body = body;
-  joke.like = like;
-  joke.dislike = dislike;
-  res.status(200).json({ msg: "joke modified", joke });
-
-  // const updatedJoke = await Joke.findByIdAndUpdate(req.params.id, req.body, {
-  //   new: true,
-  // });
+  res.status(StatusCodes.OK).json({ msg: "joke modified", joke: updatedJoke });
 
   // res.status(StatusCodes.OK).json({ job: updatedJoke });
 };
 
 // DELETE Joke controller
 export const deleteJoke = async (req, res) => {
-  const { id } = req.params;
-  const joke = jokes.find((joke) => joke.id === id);
-  if (!joke) {
-    return res.status(404).json({ msg: `no joke with id ${id}` });
-  }
+  const removedJoke = await Joke.findByIdAndDelete(req.params.id);
+  if (!removedJoke) throw new NotFoundError(`no joke with id ${req.params.id}`);
 
-  const newJokes = jokes.filter((joke) => joke.id !== id);
-  jokes = newJokes;
+  res
+    .status(StatusCodes.OK)
+    .json({ message: "joke deleted", joke: removedJoke });
 
-  res.status(200).json({ msg: "joke deleted" });
-
-  // const removedJoke = await Joke.findByIdAndDelete(req.params.id);
+  //
 
   // res.status(StatusCodes.OK).json({ message: "joke deleted", joke: removedJoke });
 };

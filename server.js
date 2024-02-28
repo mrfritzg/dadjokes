@@ -14,6 +14,9 @@ import cookieParser from "cookie-parser";
 import express from "express";
 const app = express();
 
+// Status Codes for CRUD & route responses
+import { StatusCodes } from "http-status-codes";
+
 //morgan is a package that logs the requests made to the server
 import morgan from "morgan";
 
@@ -30,6 +33,9 @@ if (process.env.NODE_ENV === "development") {
 
 //import routers
 import jokeRouter from "./routes/jokeRouter.js";
+
+// middleware for error handling
+import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 
 // implementing security middleware packages helmet & mongoSanitize
 app.use(helmet());
@@ -51,16 +57,15 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-// catches non existent routes
+//more middleware
+// not found -- requests/routes for resources that don't exist
 app.use("*", (req, res) => {
-  res.status(404).json({ msg: "not found" });
+  res.status(StatusCodes.NOT_FOUND).json({ msg: "not found" });
 });
 
-// catches general errors in the app
-app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(500).json({ msg: "something went wrong" });
-});
+// for unexpected errors, usually for general valid requests
+// using custom error handling middleware
+app.use(errorHandlerMiddleware);
 
 // Port
 const port = process.env.PORT || 5100;
