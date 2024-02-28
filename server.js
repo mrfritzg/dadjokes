@@ -42,33 +42,6 @@ app.use(express.json());
 // implement the cookieparser as middleware in order to read the cookies that hold the JWT
 app.use(cookieParser());
 
-import { nanoid } from "nanoid";
-
-let jokes = [
-  { id: nanoid(), body: "joke1", like: 1, dislike: 20 },
-  { id: nanoid(), body: "joke2", like: 100, dislike: 40 },
-];
-
-// get all jokes
-app.get("/api/v1/jokes", (req, res) => {
-  res.status(200).json({ jokes });
-});
-
-// create job
-app.post("/api/v1/jokes", (req, res) => {
-  const { body, like, dislike } = req.body;
-  if (!body || !like || !dislike) {
-    return res
-      .status(400)
-      .json({ msg: "pls provide joke and like and dislike" });
-  }
-
-  const id = nanoid(10);
-  const joke = { id, body, like, dislike };
-  jokes.push(joke);
-  res.status(200).json({ joke });
-});
-
 //middleware for routers
 //jobRouter, add authenticateUser for all job routes, to protect all job routes
 app.use("/api/v1/jokes", jokeRouter);
@@ -78,12 +51,23 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
+// catches non existent routes
+app.use("*", (req, res) => {
+  res.status(404).json({ msg: "not found" });
+});
+
+// catches general errors in the app
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).json({ msg: "something went wrong" });
+});
+
 // Port
 const port = process.env.PORT || 5100;
 
 //DB connection
 try {
-  //   await .connect(process.env.MONGO_URL);
+  await mongoose.connect(process.env.MONGO_URL);
   // server is listening to port
   app.listen(port, () => {
     console.log("server is listening on port: " + port);

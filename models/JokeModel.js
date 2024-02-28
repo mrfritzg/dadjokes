@@ -3,8 +3,14 @@ import mongoose from "mongoose";
 const JokeSchema = new mongoose.Schema(
   {
     body: String,
-    jokeLike: Number,
-    jokeDislike: Number,
+    like: {
+      type: Number,
+      default: 0,
+    },
+    dislike: {
+      type: Number,
+      default: 0,
+    },
     createdBy: {
       type: mongoose.Types.ObjectId,
       ref: "User",

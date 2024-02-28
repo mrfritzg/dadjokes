@@ -1,7 +1,13 @@
 import mongoose from "mongoose";
 import day from "dayjs";
+import { nanoid } from "nanoid";
 
-//Job Data from Model from MongoDB
+let jokes = [
+  { id: nanoid(), body: "joke1", like: 1, dislike: 20 },
+  { id: nanoid(), body: "joke2", like: 100, dislike: 40 },
+];
+
+//Joke Data from Model from MongoDB
 import Joke from "../models/JokeModel.js";
 
 // Status Codes for CRUD & route responses
@@ -10,26 +16,31 @@ import Joke from "../models/JokeModel.js";
 // custom Error Class
 // import { NotFoundError } from "../errors/customErrors.js";
 
-//Get controller
+//Get All Jokes controller
 export const getAllJokes = async (req, res) => {
+  const jokes = await Job.find({});
+  res.status(200).json({ jokes });
+
   // destructure the parameters from the search
-  const { search, jokeLike, jokeDislike, sort } = req.query;
+  // const { search, jokeLike, jokeDislike, sort } = req.query;
 
   // add createdBy as a filter to the find method
   // to only find jobs for the userId
-  const queryObject = {
-    createdBy: req.user.userId,
-  };
 
-  // if there is nothing in the search field, return all jobs based on the
+  // const queryObject = {
+  //   createdBy: req.user.userId,
+  // };
+
+  // if there is nothing in the search field,  return all jobs based on the
   // queryObject above -- which is based on the userId
   // if search is true -- add the search parameters for position/company
-  if (search) {
-    queryObject.$or = [
-      { position: { $regex: search, $options: "i" } },
-      { company: { $regex: search, $options: "i" } },
-    ];
-  }
+
+  // if (search) {
+  //   queryObject.$or = [
+  //     { position: { $regex: search, $options: "i" } },
+  //     { company: { $regex: search, $options: "i" } },
+  //   ];
+  // }
 
   // for jobStatus & JobType -- if the parameters are true , i.e. present
   // & not equal to 'all', then add them to the
@@ -38,13 +49,13 @@ export const getAllJokes = async (req, res) => {
   // which will return all jobs
   // even if 'all' is present it will return all jobs
 
-  if (jobStatus && jobStatus !== "all") {
-    queryObject.jobStatus = jobStatus;
-  }
+  // if (jobStatus && jobStatus !== "all") {
+  //   queryObject.jobStatus = jobStatus;
+  // }
 
-  if (jobType && jobType !== "all") {
-    queryObject.jobType = jobType;
-  }
+  // if (jobType && jobType !== "all") {
+  //   queryObject.jobType = jobType;
+  // }
 
   // sort options
   const sortOptions = {
@@ -54,55 +65,95 @@ export const getAllJokes = async (req, res) => {
     "z-a": "-position",
   };
 
-  const sortKey = sortOptions[sort] || sortOptions.newest;
+  // const sortKey = sortOptions[sort] || sortOptions.newest;
 
   // setup pagination
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
   const skip = (page - 1) * limit;
 
-  const jokes = await Joke.find(queryObject)
-    .sort(sortKey)
-    .skip(skip)
-    .limit(limit);
+  // const jokes = await Joke.find(queryObject)
+  //   .sort(sortKey)
+  //   .skip(skip)
+  //   .limit(limit);
 
-  const totalJokes = await Joke.countDocuments(queryObject);
-  const numOfPages = Math.ceil(totalJokes / limit);
+  // const totalJokes = await Joke.countDocuments(queryObject);
+  // const numOfPages = Math.ceil(totalJokes / limit);
 
-  res
-    .status(StatusCodes.OK)
-    .json({ totalJokes, numOfPages, currentPage: page, jokes });
+  // res
+  //   .status(StatusCodes.OK)
+  //   .json({ totalJokes, numOfPages, currentPage: page, jokes });
 };
 
-//POST Controller
+//POST Create joke Controller
 export const createJoke = async (req, res) => {
+  const joke = await Joke.create(req.body);
+  res.status(201).json({ joke });
+
   // assign the userId from the JWT to the createdBy in
   // the request as you're creating the job
-  req.body.createdBy = req.user.userId;
-  const job = await Job.create(req.body);
-  res.status(StatusCodes.CREATED).json({ job });
+
+  // req.body.createdBy = req.user.userId;
+
+  // res.status(StatusCodes.CREATED).json({ joke });
 };
 
-// Get-- a Single Job Controller
+// Get-- a Single Joke Controller
 export const getJoke = async (req, res) => {
-  const job = await Job.findById(req.params.id);
-  res.status(StatusCodes.OK).json({ job });
+  const { id } = req.params;
+  const joke = jokes.find((joke) => joke.id === id);
+  if (!joke) {
+    return res.status(404).json({ msg: `no joke with id ${id}` });
+  }
+  res.status(200).json({ joke });
+
+  // const joke = await Joke.findById(req.params.id);
+  // res.status(StatusCodes.OK).json({ joke });
 };
 
-// Patch -- Update Job controller
+// Patch -- Update Joke controller
 export const updateJoke = async (req, res) => {
-  const updatedJob = await Job.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
+  const { body, like, dislike } = req.body;
+  if (!body || !like || !dislike) {
+    return res
+      .status(400)
+      .json({ msg: "pls provide joke and like and dislike" });
+  }
 
-  res.status(StatusCodes.OK).json({ job: updatedJob });
+  const { id } = req.params;
+  const joke = jokes.find((joke) => joke.id === id);
+  if (!joke) {
+    return res.status(404).json({ msg: `no joke with id ${id}` });
+  }
+
+  joke.body = body;
+  joke.like = like;
+  joke.dislike = dislike;
+  res.status(200).json({ msg: "joke modified", joke });
+
+  // const updatedJoke = await Joke.findByIdAndUpdate(req.params.id, req.body, {
+  //   new: true,
+  // });
+
+  // res.status(StatusCodes.OK).json({ job: updatedJoke });
 };
 
-// DELETE JOB controller
+// DELETE Joke controller
 export const deleteJoke = async (req, res) => {
-  const removedJob = await Job.findByIdAndDelete(req.params.id);
+  const { id } = req.params;
+  const joke = jokes.find((joke) => joke.id === id);
+  if (!joke) {
+    return res.status(404).json({ msg: `no joke with id ${id}` });
+  }
 
-  res.status(StatusCodes.OK).json({ message: "job deleted", job: removedJob });
+  const newJokes = jokes.filter((joke) => joke.id !== id);
+  jokes = newJokes;
+
+  res.status(200).json({ msg: "joke deleted" });
+
+  // const removedJoke = await Joke.findByIdAndDelete(req.params.id);
+
+  // res.status(StatusCodes.OK).json({ message: "joke deleted", joke: removedJoke });
 };
 
 // showStats controller
