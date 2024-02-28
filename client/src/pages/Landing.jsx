@@ -33,8 +33,10 @@ const Landing = () => {
           <span className="text-red-700 font-bold">MrFritz</span>{" "}
         </h3>
         <h4>
-          You can generate random jokes by clicking on the button below or
-          refreshing the page.
+          You can generate random jokes by{" "}
+          <span className="font-bold text-red-700">
+            clicking on the button below or refreshing the page.
+          </span>
         </h4>
         <p>
           <img src={warning} alt="warning" className="inline-block px-2" />
@@ -48,7 +50,7 @@ const Landing = () => {
           className="bg-blue-950 text-white px-4 py-2 rounded-md mb-4 hover:bg-blue-700"
           onClick={getRandomJoke}
         >
-          Random Joke
+          Generate Joke
         </button>
         <div className=" m-auto h-40 justify-center items-center flex shadow-2xl">
           <h4 className="p-4 font-bold"> {randomJoke.joke}</h4>
