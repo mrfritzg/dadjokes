@@ -11,6 +11,10 @@ const JokeSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    badGood: {
+      type: Number,
+      default: 0,
+    },
     createdBy: {
       type: mongoose.Types.ObjectId,
       ref: "User",

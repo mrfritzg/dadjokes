@@ -1,9 +1,9 @@
 import { Router } from "express";
 const router = Router();
-// import {
-//   validateIdParam,
-//   validateJobInput,
-// } from "../middleware/validationMiddleware.js";
+import {
+  validateIdParam,
+  validateJokeInput,
+} from "../middleware/validationMiddleware.js";
 
 import {
   getAllJokes,
@@ -21,14 +21,14 @@ import {
 router
   .route("/")
   .get(getAllJokes)
-  .post(/*checkForTestUser, validateJobInput, */ createJoke);
+  .post(/*checkForTestUser,*/ validateJokeInput, createJoke);
 
-router.route("/stats").get(showStats);
+// router.route("/stats").get(showStats);
 
 router
   .route("/:id")
-  .get(/*validateIdParam,*/ getJoke)
-  .patch(/*checkForTestUser, validateJobInput, validateIdParam,*/ updateJoke)
-  .delete(/*checkForTestUser, validateIdParam, */ deleteJoke);
+  .get(validateIdParam, getJoke)
+  .patch(/*checkForTestUser,*/ validateJokeInput, validateIdParam, updateJoke)
+  .delete(/*checkForTestUser, */ validateIdParam, deleteJoke);
 
 export default router;
