@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const JokeSchema = new mongoose.Schema(
   {
     body: String,
+    apiId: String,
     like: {
       type: Number,
       default: 0,
