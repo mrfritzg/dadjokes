@@ -1,3 +1,5 @@
+// re-use in other projects
+
 import { StatusCodes } from "http-status-codes";
 
 export class NotFoundError extends Error {
