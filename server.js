@@ -33,6 +33,8 @@ if (process.env.NODE_ENV === "development") {
 
 //import routers
 import jokeRouter from "./routes/jokeRouter.js";
+import authRouter from "./routes/authRouter.js";
+import userRouter from "./routes/userRouter.js";
 
 // middleware for error handling
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
@@ -51,6 +53,9 @@ app.use(cookieParser());
 //middleware for routers
 //jobRouter, add authenticateUser for all job routes, to protect all job routes
 app.use("/api/v1/jokes", jokeRouter);
+app.use("/api/v1/users", /*authenticateUser, */ userRouter);
+//authRouter
+app.use("/api/v1/auth", authRouter);
 
 // simple route
 app.get("/", (req, res) => {

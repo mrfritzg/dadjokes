@@ -1,4 +1,5 @@
-// validation
+// validation re-use this in other projects
+
 import { body, param, validationResult } from "express-validator";
 import {
   BadRequestError,

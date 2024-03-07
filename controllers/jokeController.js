@@ -7,9 +7,6 @@ import Joke from "../models/JokeModel.js";
 // Status Codes for CRUD & route responses
 import { StatusCodes } from "http-status-codes";
 
-// custom Error Class
-import { NotFoundError } from "../errors/customErrors.js";
-
 //Get All Jokes controller
 export const getAllJokes = async (req, res) => {
   const jokes = await Joke.find({});
@@ -95,8 +92,6 @@ export const createJoke = async (req, res) => {
 // Get-- a Single Joke Controller
 export const getJoke = async (req, res) => {
   const joke = await Joke.findById(req.params.id);
-
-  if (!joke) throw new NotFoundError(`no joke with id ${req.params.id}`);
   res.status(StatusCodes.OK).json({ joke });
 };
 
@@ -105,26 +100,15 @@ export const updateJoke = async (req, res) => {
   const updatedJoke = await Joke.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
-
-  if (!updatedJoke) throw new NotFoundError(`no joke with id ${req.params.id}`);
-
   res.status(StatusCodes.OK).json({ msg: "joke modified", joke: updatedJoke });
-
-  // res.status(StatusCodes.OK).json({ job: updatedJoke });
 };
 
 // DELETE Joke controller
 export const deleteJoke = async (req, res) => {
   const removedJoke = await Joke.findByIdAndDelete(req.params.id);
-  if (!removedJoke) throw new NotFoundError(`no joke with id ${req.params.id}`);
-
   res
     .status(StatusCodes.OK)
     .json({ message: "joke deleted", joke: removedJoke });
-
-  //
-
-  // res.status(StatusCodes.OK).json({ message: "joke deleted", joke: removedJoke });
 };
 
 // showStats controller
