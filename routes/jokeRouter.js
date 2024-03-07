@@ -21,7 +21,7 @@ import {
 router
   .route("/")
   .get(getAllJokes)
-  .post(/*checkForTestUser,*/ validateJokeInput, createJoke);
+  .post(/*checkForTestUser, */ validateJokeInput, createJoke);
 
 // router.route("/stats").get(showStats);
 

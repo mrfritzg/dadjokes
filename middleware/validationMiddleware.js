@@ -49,17 +49,17 @@ export const validateIdParam = withValidationErrors([
   // implement a custom method to check the job id
   param("id").custom(async (value, { req }) => {
     const isValidId = mongoose.Types.ObjectId.isValid(value);
-    if (!isValidId) throw new BadRequestError("invalid MongoDB id");
+    if (!isValidId) throw new BadRequestError("invalid MongoDB id sent");
     // check if the id is in the DB
     const joke = await Joke.findById(value);
-    if (!joke) throw new NotFoundError(`no joke with id : ${value}`);
+    if (!joke) throw new NotFoundError(`no joke found with id : ${value}`);
     // check if the person is the valid owner of the  job
     // or the admin
-    const isAdmin = req.user.role === "admin";
-    const isOwner = req.user.userId === joke.createdBy.toString();
+    // const isAdmin = req.user.role === "admin";
+    // const isOwner = req.user.userId === joke.createdBy.toString();
 
-    if (!isAdmin && !isOwner)
-      throw new UnauthorizedError("not authorized to access this route");
+    // if (!isAdmin && !isOwner)
+    //   throw new UnauthorizedError("not authorized to access this route");
   }),
 ]);
 
