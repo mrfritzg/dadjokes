@@ -113,7 +113,7 @@ export const deleteJoke = async (req, res) => {
 
 // showStats controller
 export const showStats = async (req, res) => {
-  let stats = await Job.aggregate([
+  let stats = await Joke.aggregate([
     { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
     { $group: { _id: "$jobStatus", count: { $sum: 1 } } },
   ]);

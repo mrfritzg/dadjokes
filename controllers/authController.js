@@ -1,11 +1,11 @@
-//Job Data from Model from MongoDB
+//User Data from Model from MongoDB
 import User from "../models/UserModel.js";
 
 import { StatusCodes } from "http-status-codes";
 
-// import { hashPassword, comparePassword } from "../utils/passwordUtils.js";
+import { hashPassword, comparePassword } from "../utils/passwordUtils.js";
 import { UnauthenticatedError } from "../errors/customErrors.js";
-// import { createJWT } from "../utils/tokenUtils.js";
+import { createJWT } from "../utils/tokenUtils.js";
 
 //register controller
 export const register = async (req, res) => {
@@ -30,7 +30,7 @@ export const login = async (req, res) => {
 
   if (!isValidUser) throw new UnauthenticatedError("invalid credentials");
 
-  const token = createJWT({ userId: user._id, role: user.role });
+  // const token = createJWT({ userId: user._id, role: user.role });
 
   // expiration for the cookie -- 1 day
   const oneDay = 1000 * 60 * 60 * 24;
@@ -47,6 +47,7 @@ export const login = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "user logged in" });
 };
 
+// Logout Controller
 export const logout = (req, res) => {
   res.cookie("token", "logout", {
     httpOnly: true,
