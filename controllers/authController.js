@@ -30,6 +30,7 @@ export const login = async (req, res) => {
 
   if (!isValidUser) throw new UnauthenticatedError("invalid credentials");
 
+  // creates the token
   const token = createJWT({ userId: user._id, role: user.role });
 
   // expiration for the cookie -- 1 day

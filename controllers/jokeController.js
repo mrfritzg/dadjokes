@@ -76,17 +76,22 @@ export const getAllJokes = async (req, res) => {
   //   .json({ totalJokes, numOfPages, currentPage: page, jokes });
 };
 
+// get Jokes created by the user
+export const getMyJokes = async (req, res) => {
+  const jokes = await Joke.find({ createdBy: req.user.userId });
+  res.status(StatusCodes.OK).json({ joke });
+};
+
+// get Jokes marked as favorites by the user
+export const getMyFavJokes = async (req, res) => {};
+
 //POST Create joke Controller
 export const createJoke = async (req, res) => {
-  const joke = await Joke.create(req.body);
-  res.status(StatusCodes.CREATED).json({ joke });
-
   // assign the userId from the JWT to the createdBy in
   // the request as you're creating the job
-
-  // req.body.createdBy = req.user.userId;
-
-  // res.status(StatusCodes.CREATED).json({ joke });
+  req.body.createdBy = req.user.userId;
+  const joke = await Joke.create(req.body);
+  res.status(StatusCodes.CREATED).json({ joke });
 };
 
 // Get-- a Single Joke Controller

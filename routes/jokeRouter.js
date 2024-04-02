@@ -12,23 +12,27 @@ import {
   updateJoke,
   deleteJoke,
   showStats,
+  getMyJokes,
 } from "../controllers/jokeController.js";
 
-// import { checkForTestUser } from "../middleware/authMiddleware.js";
+import { authenticateUser } from "../middleware/authMiddleware.js";
 
 //chain the routes
 //same path different methods
 router
   .route("/")
   .get(getAllJokes)
-  .post(/*checkForTestUser, */ validateJokeInput, createJoke);
+  .post(authenticateUser, validateJokeInput, createJoke);
 
 // router.route("/stats").get(showStats);
+
+// route to get jokes created by the user
+router.route("/myjokes").get(authenticateUser, getMyJokes);
 
 router
   .route("/:id")
   .get(validateIdParam, getJoke)
-  .patch(/*checkForTestUser,*/ validateJokeInput, validateIdParam, updateJoke)
-  .delete(/*checkForTestUser, */ validateIdParam, deleteJoke);
+  .patch(authenticateUser, validateJokeInput, validateIdParam, updateJoke)
+  .delete(authenticateUser, validateIdParam, deleteJoke);
 
 export default router;
