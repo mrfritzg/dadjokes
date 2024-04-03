@@ -31,7 +31,7 @@ router.route("/myjokes").get(authenticateUser, getMyJokes);
 
 router
   .route("/:id")
-  .get(validateIdParam, getJoke)
+  .get(authenticateUser, validateIdParam, getJoke)
   .patch(authenticateUser, validateJokeInput, validateIdParam, updateJoke)
   .delete(authenticateUser, validateIdParam, deleteJoke);
 

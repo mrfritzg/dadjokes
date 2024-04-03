@@ -39,6 +39,9 @@ import userRouter from "./routes/userRouter.js";
 // middleware for error handling
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 
+//middleware for authentication
+import { authenticateUser } from "./middleware/authMiddleware.js";
+
 // implementing security middleware packages helmet & mongoSanitize
 app.use(helmet());
 app.use(mongoSanitize());
@@ -53,7 +56,7 @@ app.use(cookieParser());
 //middleware for routers
 //jobRouter, add authenticateUser for all job routes, to protect all job routes
 app.use("/api/v1/jokes", jokeRouter);
-app.use("/api/v1/users", /*authenticateUser, */ userRouter);
+app.use("/api/v1/users", authenticateUser, userRouter);
 //authRouter
 app.use("/api/v1/auth", authRouter);
 

@@ -79,7 +79,7 @@ export const getAllJokes = async (req, res) => {
 // get Jokes created by the user
 export const getMyJokes = async (req, res) => {
   const jokes = await Joke.find({ createdBy: req.user.userId });
-  res.status(StatusCodes.OK).json({ joke });
+  res.status(StatusCodes.OK).json({ jokes });
 };
 
 // get Jokes marked as favorites by the user
