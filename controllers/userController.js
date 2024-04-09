@@ -6,6 +6,7 @@ import cloudinary from "cloudinary";
 
 export const getCurrentUser = async (req, res) => {
   const user = await User.findOne({ _id: req.user.userId });
+  // sends back the user w/o password
   const userWithoutPassword = user.toJSON();
   res.status(StatusCodes.OK).json({ user });
 };

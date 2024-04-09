@@ -4,10 +4,6 @@ const UserSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: String,
-  lastName: {
-    type: String,
-    default: "lastName",
-  },
   role: {
     type: String,
     enum: ["user", "admin"],
@@ -17,6 +13,7 @@ const UserSchema = new mongoose.Schema({
   avatarPublicId: String,
 });
 
+// sends back the user w/o password
 UserSchema.methods.toJSON = function () {
   let obj = this.toObject();
   delete obj.password;

@@ -4,6 +4,9 @@ export const jokesFetch = axios.create({
   baseURL: "https://icanhazdadjoke.com/",
   headers: {
     Accept: "application/json",
-    // "User-Agent": "MrFritz Test Website",
   },
+});
+
+export const jokesDBFetch = axios.create({
+  baseURL: "/api/v1",
 });
