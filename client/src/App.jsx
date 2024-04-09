@@ -10,6 +10,9 @@ import {
   Login,
 } from "./pages";
 
+// Register form sumbit action
+import { action as registerAction } from "./pages/Register";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +38,7 @@ const router = createBrowserRouter([
       {
         path: "Register",
         element: <Register />,
+        action: registerAction,
       },
       {
         path: "Login",

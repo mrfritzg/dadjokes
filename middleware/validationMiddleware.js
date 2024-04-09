@@ -67,7 +67,6 @@ export const validateIdParam = withValidationErrors([
 
 export const validateRegisterInput = withValidationErrors([
   body("name").notEmpty().withMessage("name is required"),
-  body("lastName").notEmpty().withMessage("last name is required"),
   // use a custom method to check if the email already exists
   body("email")
     .notEmpty()
@@ -98,7 +97,6 @@ export const validateLoginInput = withValidationErrors([
 
 export const validateUpdateUserInput = withValidationErrors([
   body("name").notEmpty().withMessage("name is required"),
-  body("lastName").notEmpty().withMessage("last name is required"),
   // use a custom method to check if the email already exists
   body("email")
     .notEmpty()
