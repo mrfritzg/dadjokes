@@ -10,8 +10,12 @@ import {
   Login,
 } from "./pages";
 
-// Register form sumbit action
+// Actions from data forms
 import { action as registerAction } from "./pages/Register";
+import { action as loginAction } from "./pages/Login";
+
+//Loaders
+import { loader as landingLoader } from "./pages/Landing";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +26,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
+        loader: landingLoader,
       },
       {
         path: "search",
@@ -43,6 +48,7 @@ const router = createBrowserRouter([
       {
         path: "Login",
         element: <Login />,
+        action: loginAction,
       },
     ],
   },

@@ -1,4 +1,11 @@
-const FormRow = ({ type, name, labelText, defaultValue, onChange }) => {
+const FormRow = ({
+  type,
+  name,
+  labelText,
+  defaultValue,
+  onChange,
+  placeholder,
+}) => {
   return (
     <div className="form-row">
       <label htmlFor={name} className="form-label">
@@ -12,8 +19,9 @@ const FormRow = ({ type, name, labelText, defaultValue, onChange }) => {
         defaultValue={defaultValue || ""}
         required
         onChange={onChange}
+        placeholder={placeholder || ""}
       />
     </div>
   );
 };
-export default FormRow
+export default FormRow;

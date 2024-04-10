@@ -181,6 +181,13 @@ button:disabled {
   color: var(--white);
   background: var(--red-dark);
 }
+
+.member-btn {
+  color: var(--primary-500);
+  letter-spacing: var(--letter-spacing);
+  margin-left: 0.25rem;
+}
+
 /* alerts */
 .alert {
   padding: 0.375rem 0.75rem;

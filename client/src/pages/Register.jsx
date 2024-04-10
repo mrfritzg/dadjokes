@@ -25,10 +25,10 @@ const Register = () => {
         method="post"
         className="form max-w-md border-t-4 border-solid border-blue-950"
       >
-        <h1 className="my-1 text-center text-xl">Register</h1>
-        <FormRow type="text" name="name" />
-        <FormRow type="email" name="email" />
-        <FormRow type="password" name="password" />
+        <h1 className="my-1 text-center font-bold text-xl">Register</h1>
+        <FormRow type="text" name="name" placeholder="john" />
+        <FormRow type="email" name="email" placeholder="john@gmail.com" />
+        <FormRow type="password" name="password" placeholder="At least 8 unique chars" />
         <SubmitBtn />
         <p className="mt-4 text-center leading-6">
           Already a Member?{" "}

@@ -11,7 +11,7 @@ const Search = () => {
     const getJokes = async () => {
       try {
         const res = await jokesFetch(`search?term=${search}`);
-        console.log(res.data.results);
+        // console.log(res.data.results);
         setJokes(res.data.results);
       } catch (error) {
         console.log(error);

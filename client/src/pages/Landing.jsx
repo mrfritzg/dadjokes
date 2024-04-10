@@ -1,31 +1,57 @@
 import { useEffect, useState } from "react";
-import { jokesFetch } from "../utils/axiosfetchs";
+import { jokesFetch, jokesDBFetch } from "../utils/axiosfetchs";
 import likes from "../assets/images/likes.png";
 import dislikes from "../assets/images/dislikes.png";
 import heart from "../assets/images/heart.png";
 import plus from "../assets/images/plus.png";
 import warning from "../assets/images/warning.png";
+import { useLoaderData } from "react-router-dom";
+
+export const loader = async () => {
+  try {
+    const { data } = await jokesDBFetch("/users/current-user");
+    return data;
+  } catch (error) {
+    return null;
+  }
+};
 
 const Landing = () => {
+  // const data = useLoaderData();
+  // console.log(data);
   const [randomJoke, setRandomJoke] = useState({});
+  const [currentUser, setCurrentUser] = useState({});
   const getRandomJoke = async () => {
     try {
       const res = await jokesFetch();
-      console.log(res.data);
+      // console.log(res.data);
       setRandomJoke(res.data);
     } catch (error) {
       console.log(error);
     }
   };
+
+  const getUser = async () => {
+    try {
+      const res = await jokesDBFetch("/users/current-user");
+      console.log(res.data.user);
+      setCurrentUser(res.data.user);
+    } catch (error) {
+      // console.log(error);
+      return null;
+    }
+  };
+
   useEffect(() => {
     getRandomJoke();
+    getUser();
   }, []);
 
   return (
     <main className="bg-white p-5 md:w-2/3 mx-auto">
       <section className="border-b-4 border-blue-950 pb-2">
         <h1 className="font-bold text-center text-xl">
-          Welcome to DAD
+          Welcome {currentUser?.name} to DAD
           <span className="text-blue-600 transform uppercase">Jokes</span>
         </h1>
         <h3 className="">
@@ -42,7 +68,6 @@ const Landing = () => {
           <img src={warning} alt="warning" className="inline-block px-2" />
           <span className="text-red-900 underline">WARNING:</span> Please seek
           medical attention if your eyes don't unroll after 5 minutes{" "}
-          <img src={warning} alt="warning" className="inline-block px-2" />
         </p>
       </section>
       <section className="text-center my-10">
