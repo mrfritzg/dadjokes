@@ -15,7 +15,7 @@ import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 
 //Loaders
-import { loader as landingLoader } from "./pages/Landing";
+import { loader as myJokesLoader } from "./pages/MyJokes";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +26,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
-        loader: landingLoader,
       },
       {
         path: "search",
@@ -39,6 +38,7 @@ const router = createBrowserRouter([
       {
         path: "Myjokes",
         element: <MyJokes />,
+        loader: myJokesLoader,
       },
       {
         path: "Register",

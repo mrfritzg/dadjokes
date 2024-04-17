@@ -10,8 +10,8 @@ export const action = async ({ request }) => {
 
   try {
     await jokesDBFetch.post("/auth/login", data);
-    toast.success("Registration Successful!");
-    return redirect("/");
+    toast.success("Login Successful!");
+    return redirect("/myjokes");
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     return error;

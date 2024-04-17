@@ -1,26 +1,16 @@
 import { useEffect, useState } from "react";
-import { jokesFetch, jokesDBFetch } from "../utils/axiosfetchs";
+import { jokesFetch } from "../utils/axiosfetchs";
 import likes from "../assets/images/likes.png";
 import dislikes from "../assets/images/dislikes.png";
 import heart from "../assets/images/heart.png";
 import plus from "../assets/images/plus.png";
 import warning from "../assets/images/warning.png";
-import { useLoaderData } from "react-router-dom";
 
-export const loader = async () => {
-  try {
-    const { data } = await jokesDBFetch("/users/current-user");
-    return data;
-  } catch (error) {
-    return null;
-  }
-};
 
 const Landing = () => {
-  // const data = useLoaderData();
-  // console.log(data);
   const [randomJoke, setRandomJoke] = useState({});
   const [currentUser, setCurrentUser] = useState({});
+
   const getRandomJoke = async () => {
     try {
       const res = await jokesFetch();
@@ -31,20 +21,8 @@ const Landing = () => {
     }
   };
 
-  const getUser = async () => {
-    try {
-      const res = await jokesDBFetch("/users/current-user");
-      console.log(res.data.user);
-      setCurrentUser(res.data.user);
-    } catch (error) {
-      // console.log(error);
-      return null;
-    }
-  };
-
   useEffect(() => {
     getRandomJoke();
-    getUser();
   }, []);
 
   return (
