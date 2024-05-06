@@ -23,11 +23,11 @@ export const loader = async () => {
   }
 };
 
-const DashboardContext = createContext();
+const MyJokesContext = createContext();
 
 const MyJokes = () => {
-  const { currentUserData, userJokes } = useLoaderData();
-  // console.log(userJokes);
+  const { userJokes, currentUserData } = useLoaderData();
+  // console.log(currentUserData);
   const myJokes = userJokes?.jokes;
 
   const navigate = useNavigate();
@@ -42,9 +42,8 @@ const MyJokes = () => {
     toast.success("Logging Out...");
   };
 
-
   return (
-    <DashboardContext.Provider
+    <MyJokesContext.Provider
       value={{
         currentUserData,
         logoutUser,
@@ -77,10 +76,10 @@ const MyJokes = () => {
           </div>
         </section>
       </main>
-    </DashboardContext.Provider>
+    </MyJokesContext.Provider>
   );
 };
 // custom hook for the context for the data
-export const useDashboardContext = () => useContext(DashboardContext);
+export const useMyJokesContext = () => useContext(MyJokesContext);
 
 export default MyJokes;
